@@ -14,65 +14,69 @@
  * limitations under the License.
  **/
 
-module.exports = function (RED) {
-    var xManager = require('./lib/xEventManager.js');
+var xManager = require('./lib/xEventManager.js');
+var manager = null;
+var waitingForManager = false;
+var ctx;
 
-    var handleMsg = function(msg, ctx, manager) {
+module.exports = function (RED) {
+     var handleMsg = function(msg) {
         if (msg != null && msg.payload != null) {
+	   // console.log("Got payload");
             var payload = msg.payload;
             try {
                 switch(payload.event) {
                     case 'keyUp':
                         manager.keyUp(payload.data.key);
-                        console.log("keyUp");
+                       // console.log("keyUp");
                         break;
                     case 'keyDown':
                         manager.keyDown(payload.data.key);
-                        console.log("keyDown");
+                       // console.log("keyDown");
                         break;
                     case 'move':
                         manager.move(payload.data.xPercent, payload.data.yPercent);
-                        console.log("move");
+                       // console.log("move");
                         break;
                     case 'moveRelative':
                         manager.moveRelative(payload.data.x, payload.data.y);
-                        console.log("moveRelative");
+                       // console.log("moveRelative");
                         break;
                     case 'click':
                         manager.click(payload.data.clickCode);
-                        console.log("click");
+                       // console.log("click");
                         break;
                 }
-            } catch(err){ctx.error(err);}
+            } catch(err){console.log(err);}
         }
     };
-
-    var ctx = this;
-    var manager = null;
-    var waitingForManager = false;
 
     function X11FunctionNode(n) {
         RED.nodes.createNode(this, n);
         this.name = n.name;
         this.x11 = n.x11;
-
-
         this.topic = n.topic;
-        console.log("X11FunctionNode");
+        //console.log("X11FunctionNode");
         ctx = this;
         this.on("input", function(msg){
+	    // console.log("Got msg");
              if(manager == null) {
                 if(!waitingForManager) {
+		   // console.log("Not waiting for manager");
                     waitingForManager = true;
                     try {
                         xManager.createXManager(function(mng) {
-                            manager = mng; }
+				//console.log("Got manager");
+                            	manager = mng; 
+			    }
                         );
                     } catch(err) {
-                        waitingForManager = false;
-                        ctx.error(err.toString());
+			console.log("Error creating manager");
+                        console.log(err.toString());
                     }
-                }
+                } else {
+			console.log("Waiting for manager");
+		}
             } else {
                 handleMsg(msg);
             }
