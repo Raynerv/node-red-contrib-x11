@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node-red-contrib-async
 ========================
 
@@ -19,3 +20,7 @@ In the node-red package.json add a dependency to
 "node-red-contrib-async":"latest"
 
 Usage is documented in the node's information panel.
+=======
+node-red-contrib-x11
+====================
+>>>>>>> 1cb258722d541e07f0366c3e5d355649545da4e3

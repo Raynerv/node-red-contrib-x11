@@ -27,7 +27,7 @@ module.exports = function (RED) {
         try {
             xManager.createXManager(function(manager) {
                 this.on("input", function (msg) {
-                    if (msg != null && msg.topic != null && msg.payload != null) {
+                    if (msg != null && msg.payload != null) {
                         // { event, data }
                         var payload = msg.payload;
                         try {
