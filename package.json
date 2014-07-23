@@ -1,0 +1,27 @@
+{
+    "name"         : "node-red-contrib-x11",
+    "version"      : "0.0.1",
+    "description"  : "TODO",
+    "dependencies": {	
+         "x11" : "0.0.2"
+    },
+	"license": "Apache",
+	"repository" : {
+        "type":"git",
+        "url":"https://github.com/Raynerv/node-red-contrib-async.git"
+    },
+    "keywords": [ "node-red", "x11"],
+    "node-red"     : {
+        "nodes": {
+            "x11": "x11.js"
+        }
+    },
+	"directories" : {		
+		"icons": "icons",
+        "lib": "lib"
+		},
+	 "author": {
+        "name": "Rayner Vintervoll",
+        "email": "raynerv@gmail.com"
+    }
+}
