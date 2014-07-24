@@ -21,7 +21,7 @@ module.exports = function (RED) {
         RED.nodes.createNode(this, n);
         this.name = n.name;
         this.x11 = n.x11;
-        ctx = this;
+        var ctx = this;
         this.topic = n.topic;
         this.on("input", function(msg){this.error("No XManager")});
         try {
@@ -48,12 +48,12 @@ module.exports = function (RED) {
                                     manager.click(payload.data.clickCode);
                                     break;
                             }
-                        } catch(err){this.error(err);}
+                        } catch(err){ctx.error(err);}
                     }
                 });
             });
         } catch (err) {
-            console.error(err);
+            ctx.error(err);
         }
     }
 
