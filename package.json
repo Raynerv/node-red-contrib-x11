@@ -3,7 +3,7 @@
     "version"      : "0.0.1",
     "description"  : "TODO",
     "dependencies": {	
-         "x11" : "0.0.2"
+
     },
 	"license": "Apache",
 	"repository" : {
