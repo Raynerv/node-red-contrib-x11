@@ -19,29 +19,29 @@ module.exports = function (RED) {
 
     var handleMsg = function(msg) {
         if (msg != null && msg.payload != null) {
-            console.log("Got message");
+
             var payload = msg.payload;
             try {
                 switch(payload.event) {
                     case 'keyUp':
                         manager.keyUp(payload.data.key);
-                        console.log("keyUp");
+
                         break;
                     case 'keyDown':
                         manager.keyDown(payload.data.key);
-                        console.log("keyDown");
+
                         break;
                     case 'move':
                         manager.move(payload.data.xPercent, payload.data.yPercent);
-                        console.log("move");
+
                         break;
                     case 'moveRelative':
                         manager.moveRelative(payload.data.x, payload.data.y);
-                        console.log("moveRelative");
+
                         break;
                     case 'click':
                         manager.click(payload.data.clickCode);
-                        console.log("click");
+
                         break;
                 }
             } catch(err){ctx.error(err);}
@@ -60,10 +60,9 @@ module.exports = function (RED) {
         console.log("X11FunctionNode");
         ctx = this;
         this.on("input", function(msg){
-            if(manager == null) {
+             if(manager == null) {
                 ctx.error("No XManager");
                 try {
-                    console.log("Trying to get XManager");
                     xManager.createXManager(function(mng) { manager = mng;});
                 } catch (err) {
                     ctx.error(err);
