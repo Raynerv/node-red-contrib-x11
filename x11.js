@@ -48,8 +48,6 @@ module.exports = function (RED) {
         }
     };
 
-
-
     function X11FunctionNode(n) {
         RED.nodes.createNode(this, n);
         this.name = n.name;
@@ -59,15 +57,10 @@ module.exports = function (RED) {
         this.topic = n.topic;
         console.log("X11FunctionNode");
         ctx = this;
+        xManager.createXManager(function(mng) { manager = mng;});
         this.on("input", function(msg){
              if(manager == null) {
                 ctx.error("No XManager");
-                try {
-                    xManager.createXManager(function(mng) { manager = mng;});
-                } catch (err) {
-                    ctx.error(err);
-                    console.error(err);
-                }
             } else {
                 handleMsg(msg, ctx, manager);
             }
