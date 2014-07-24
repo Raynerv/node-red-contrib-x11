@@ -25,23 +25,23 @@ module.exports = function (RED) {
                 switch(payload.event) {
                     case 'keyUp':
                         manager.keyUp(payload.data.key);
-
+                        console.log("keyUp");
                         break;
                     case 'keyDown':
                         manager.keyDown(payload.data.key);
-
+                        console.log("keyDown");
                         break;
                     case 'move':
                         manager.move(payload.data.xPercent, payload.data.yPercent);
-
+                        console.log("move");
                         break;
                     case 'moveRelative':
                         manager.moveRelative(payload.data.x, payload.data.y);
-
+                        console.log("moveRelative");
                         break;
                     case 'click':
                         manager.click(payload.data.clickCode);
-
+                        console.log("click");
                         break;
                 }
             } catch(err){ctx.error(err);}
