@@ -21,12 +21,12 @@ module.exports = function (RED) {
         RED.nodes.createNode(this, n);
         this.name = n.name;
         this.x11 = n.x11;
-
+        ctx = this;
         this.topic = n.topic;
         this.on("input", function(msg){this.error("No XManager")});
         try {
             xManager.createXManager(function(manager) {
-                this.on("input", function (msg) {
+                ctx.on("input", function (msg) {
                     if (msg != null && msg.payload != null) {
                         // { event, data }
                         var payload = msg.payload;
