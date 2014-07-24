@@ -19,7 +19,6 @@ module.exports = function (RED) {
 
     var handleMsg = function(msg, ctx, manager) {
         if (msg != null && msg.payload != null) {
-
             var payload = msg.payload;
             try {
                 switch(payload.event) {
@@ -48,33 +47,34 @@ module.exports = function (RED) {
         }
     };
 
+    var ctx = this;
+    var manager = null;
+    var waitingForManager = false;
+
     function X11FunctionNode(n) {
         RED.nodes.createNode(this, n);
         this.name = n.name;
         this.x11 = n.x11;
-        var ctx = this;
-        var manager = null;
-        var waitingForManager = false;
+
+
         this.topic = n.topic;
         console.log("X11FunctionNode");
         ctx = this;
-        xManager.createXManager(function(mng) { manager = mng; waitingForManager = false;});
         this.on("input", function(msg){
              if(manager == null) {
                 if(!waitingForManager) {
                     waitingForManager = true;
                     try {
-                    xManager.createXManager(function(mng) {
-                        manager = mng; waitingForManager = false;}
-                    );
+                        xManager.createXManager(function(mng) {
+                            manager = mng; waitingForManager = false;}
+                        );
                     } catch(err) {
                         waitingForManager = false;
                         ctx.error(err.toString());
                     }
                 }
-                ctx.error("No XManager");
             } else {
-                handleMsg(msg, ctx, manager);
+                handleMsg(msg);
             }
         });
     }
