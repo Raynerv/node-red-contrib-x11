@@ -20,7 +20,6 @@ module.exports = function (RED) {
     var handleMsg = function(msg) {
         if (msg != null && msg.payload != null) {
             console.log("Got message");
-            // { event, data }
             var payload = msg.payload;
             try {
                 switch(payload.event) {
@@ -50,7 +49,6 @@ module.exports = function (RED) {
     };
 
     var ctx;;
-
     var manager = null;
 
     function X11FunctionNode(n) {
@@ -59,6 +57,7 @@ module.exports = function (RED) {
         this.x11 = n.x11;
 
         this.topic = n.topic;
+
         ctx = this;
         this.on("input", function(msg){
             if(manager == null) this.error("No XManager");
@@ -68,7 +67,7 @@ module.exports = function (RED) {
             xManager.createXManager(function(mng) { manager = mng;});
         } catch (err) {
             ctx.error(err);
-            console.err(err);
+            console.error(err);
         }
     }
 
