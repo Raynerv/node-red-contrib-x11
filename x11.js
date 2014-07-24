@@ -53,7 +53,7 @@ module.exports = function (RED) {
                 });
             });
         } catch (err) {
-            this.error(err);
+            console.error(err);
         }
     }
 
