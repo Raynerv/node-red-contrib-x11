@@ -31,7 +31,7 @@ module.exports = function (RED) {
                         // { event, data }
                         var payload = msg.payload;
                         try {
-                            switch(topic) {
+                            switch(payload.event) {
                                 case 'keyUp':
                                     manager.keyUp(payload.key);
                                     break;
