@@ -23,7 +23,7 @@ module.exports = function (RED) {
         this.x11 = n.x11;
 
         this.topic = n.topic;
-
+        this.on("input", function(msg){this.error("No XManager")});
         try {
             xManager.createXManager(function(manager) {
                 this.on("input", function (msg) {
