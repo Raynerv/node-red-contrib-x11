@@ -57,18 +57,21 @@ module.exports = function (RED) {
         this.x11 = n.x11;
 
         this.topic = n.topic;
-
+        console.log("X11FunctionNode");
         ctx = this;
         this.on("input", function(msg){
-            if(manager == null) this.error("No XManager");
+            if(manager == null) {
+                ctx.error("No XManager");
+                try {
+                    console.log("Trying to get XManager");
+                    xManager.createXManager(function(mng) { manager = mng;});
+                } catch (err) {
+                    ctx.error(err);
+                    console.error(err);
+                }
+            }
             handleMsg(msg);
         });
-        try {
-            xManager.createXManager(function(mng) { manager = mng;});
-        } catch (err) {
-            ctx.error(err);
-            console.error(err);
-        }
     }
 
     RED.nodes.registerType("x11", X11FunctionNode);
