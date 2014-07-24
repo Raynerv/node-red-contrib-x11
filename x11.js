@@ -31,21 +31,21 @@ module.exports = function (RED) {
                         // { event, data }
                         var payload = msg.payload;
                         try {
-                            switch(topic) {
+                            switch(payload.event) {
                                 case 'keyUp':
-                                    manager.keyUp(payload.key);
+                                    manager.keyUp(payload.data.key);
                                     break;
                                 case 'keyDown':
-                                    manager.keyDown(payload.key);
+                                    manager.keyDown(payload.data.key);
                                     break;
                                 case 'move':
-                                    manager.move(payload.xPercent, payload.yPercent);
+                                    manager.move(payload.data.xPercent, payload.data.yPercent);
                                     break;
                                 case 'moveRelative':
-                                    manager.moveRelative(payload.x, payload.y);
+                                    manager.moveRelative(payload.data.x, payload.data.y);
                                     break;
                                 case 'click':
-                                    manager.click(payload.clickCode);
+                                    manager.click(payload.data.clickCode);
                                     break;
                             }
                         } catch(err){this.error(err);}
