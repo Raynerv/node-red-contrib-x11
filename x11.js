@@ -66,7 +66,7 @@ module.exports = function (RED) {
                     waitingForManager = true;
                     try {
                         xManager.createXManager(function(mng) {
-                            manager = mng; waitingForManager = false;}
+                            manager = mng; }
                         );
                     } catch(err) {
                         waitingForManager = false;
