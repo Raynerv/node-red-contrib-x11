@@ -68,8 +68,9 @@ module.exports = function (RED) {
                     ctx.error(err);
                     console.error(err);
                 }
-            }
-            handleMsg(msg);
+            } else {
+                handleMsg(msg);
+             }
         });
     }
 
