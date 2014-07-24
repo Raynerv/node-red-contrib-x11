@@ -1,26 +1,27 @@
-<<<<<<< HEAD
-node-red-contrib-async
+node-red-contrib-x11
 ========================
-
-A node-red node for executing javascript code in a node-red flow either synchronously, asynchronously, or both. Based on the node-red core function node. 
-
 
 Install
 -------
 
 Run the following command in the root directory of your Node-RED install
 
-    npm install node-red-contrib-async
+    npm install node-red-contrib-x11
 
 
 Usage
 -----
 
 In the node-red package.json add a dependency to
-"node-red-contrib-async":"latest"
+"node-red-contrib-x11":"latest"
 
 Usage is documented in the node's information panel.
+
+Launch node-red in a display, e.g.
+DISPLAY=:0 node red.js
+
+Example payload keyUp:
+
 =======
 node-red-contrib-x11
 ====================
->>>>>>> 1cb258722d541e07f0366c3e5d355649545da4e3

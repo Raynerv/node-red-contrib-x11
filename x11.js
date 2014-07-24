@@ -17,7 +17,7 @@
 module.exports = function (RED) {
     var xManager = require('./lib/xEventManager.js');
 
-    var handleMsg = function(msg) {
+    var handleMsg = function(msg, ctx, manager) {
         if (msg != null && msg.payload != null) {
 
             var payload = msg.payload;
@@ -48,14 +48,14 @@ module.exports = function (RED) {
         }
     };
 
-    var ctx;;
-    var manager = null;
+
 
     function X11FunctionNode(n) {
         RED.nodes.createNode(this, n);
         this.name = n.name;
         this.x11 = n.x11;
-
+        var ctx = this;
+        var manager = null;
         this.topic = n.topic;
         console.log("X11FunctionNode");
         ctx = this;
@@ -69,8 +69,8 @@ module.exports = function (RED) {
                     console.error(err);
                 }
             } else {
-                handleMsg(msg);
-             }
+                handleMsg(msg, ctx, manager);
+            }
         });
     }
 
