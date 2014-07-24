@@ -60,7 +60,7 @@ module.exports = function (RED) {
         console.log("X11FunctionNode");
         ctx = this;
         this.on("input", function(msg){
-            if(manager == null) {
+             if(manager == null) {
                 ctx.error("No XManager");
                 try {
                     console.log("Trying to get XManager");
