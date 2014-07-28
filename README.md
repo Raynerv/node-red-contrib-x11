@@ -27,7 +27,7 @@ Usage
 In the node-red package.json add a dependency to
 "node-red-contrib-x11":"latest"
 
-Usage is documented in the node's information panel.
+TODO: Document usage in the node's information panel
 
 Launch node-red in a display, e.g.
 ```
