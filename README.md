@@ -10,7 +10,7 @@ msg.payload = { "event": "keyDown", "data": { "key": 38 }};
 return msg;
 ```
 
-Based on [Andrew Swerlicks Node.js X11Client implementation.](../../AndrewSwerlick/node-remote)
+Based on [Andrew Swerlicks Node.js X11Client implementation.](http://github.com/AndrewSwerlick/node-remote)
 
 
 Install
